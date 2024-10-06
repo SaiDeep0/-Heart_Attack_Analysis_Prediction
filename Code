@@ -1,0 +1,32 @@
+#Heart_Attack_Analysis_Prediction
+from sklearn.ensemble import randomforestclassifier
+from sklearn.metrics import classification_report, accuracy_score
+model = randomforestclassifier(random_state=42)
+model.fit(x_train_scaled, y_train)
+y_pred = model.predict(x_test_scaled)
+accuracy = accuracy_score(y_test, y_pred)
+report = classification_report(y_test, y_pred)
+def get_user_input_and_predict():   
+ print("enter the values for the following features:")   
+ age = int(input("age: "))    
+ sex = int(input("sex (1 = male, 0 = female): "))    
+ cp = int(input("chest pain type (0-3): "))   
+ trtbps = int(input("resting blood pressure (in mm hg): "))   
+ chol = int(input("serum cholesterol (in mg/dl): "))  
+ fbs = int(input("fasting blood sugar (> 120 mg/dl, 1 = true; 0 = false): ")) 
+ restecg = int(input("resting electrocardiographic results (0-2): "))  
+ thalachh = int(input("maximum heart rate achieved: "))    
+ exng = int(input("exercise induced angina (1 = yes; 0 = no): "))    
+ oldpeak = float(input("st depression induced by exercise relative to rest: "))   
+ slp = int(input("slope of the peak exercise st segment (0-2): "))    
+ caa = int(input("number of major vessels colored by fluoroscopy (0-3): "))    
+ thall = int(input("thalassemia (0 = normal; 1 = fixed defect; 2 = reversible defect): "))  
+# create a dataframe from the user input    
+user_data = pd.dataframe([[age, sex, cp, trtbps, chol, fbs, restecg, thalachh, exng, oldpeak, slp, caa, thall]],columns=['age', 'sex', 'cp', 'trtbps', 'chol', 'fbs', 'restecg', 'thalachh', 'exng', 'oldpeak', 'slp', 'caa', 'thall'])   
+user_data_scaled = scaler.transform(user_data)   
+ # make prediction 
+prediction = model.predict(user_data_scaled)    
+prediction_proba = model.predict_proba(user_data_scaled)  
+print(f"\nprediction: {'more chance of heart disease' if prediction[0] == 1 else 'less chance of heart disease'}") 
+print(f"probability: {prediction_proba[0][prediction[0]] * 100:.2f}%")
+get_user_input_and_predict()
