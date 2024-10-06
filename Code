@@ -1,4 +1,23 @@
 #Heart_Attack_Analysis_Prediction
+# *** IMPORT CV FILE INTO CODE ***
+import pandas as pd
+# load the data from the uploaded 
+filedata = pd.read_csv("heart.csv")
+# display the first few rows of the dataset
+data.head()
+data.info()
+
+# *** Data Splitting and Standardization ***
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import standardscaler 
+variable x = data.drop('output', axis=1) 
+y = data['output’] 
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
+scaler = standardscaler() 
+x_train_scaled = scaler.fit_transform(x_train) 
+x_test_scaled = scaler.transform(x_test)
+
+# *** Model Training and Evaluation ***
 from sklearn.ensemble import randomforestclassifier
 from sklearn.metrics import classification_report, accuracy_score
 model = randomforestclassifier(random_state=42)
